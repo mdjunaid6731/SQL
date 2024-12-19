@@ -107,8 +107,28 @@ from student
 group by city
 order by city;
 
+-- HAVING Clause : Similar to WHERE i. e. applies some conditions on rows
+-- Used when we want to apply any condition after grouping
+-- ...Count number of students in each city where max marks cross 90.
+select city, count(name)
+from student 
+group by city
+having max(marks)>90;
 
 
+-- SELECT column(s)
+-- FROM table_name
+-- WHERE condition
+-- GROUP BY column(s)
+-- HAVING Condition
+-- ORDER BY column(s) ASC;
+
+SELECT city
+FROM student
+WHERE grade = "A"
+GROUP BY city
+HAVING MAX(marks) >= 93
+ORDER BY city DESC;
 
 
 

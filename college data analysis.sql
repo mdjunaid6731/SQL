@@ -25,6 +25,27 @@ values
 select * from student;
 select name, marks from student; 
 select distinct city from student;   -- gives distict city names
+ 
+ set SQL_SAFE_UPDATES = 0;
+ 
+-- Update Command :  to updated exsiting rows
+update student 
+set grade = "O"
+where grade = "A";
+
+update student 
+set marks = 12
+where rollno = 105;
+
+update student
+set marks = marks+1;
+
+-- Delete Caommand :  to delete existing rows
+delete from student 
+where marks<33;
+
+
+
 
 
 -- WHERE Clause : To define some conditions
@@ -125,7 +146,7 @@ having max(marks)>90;
 
 SELECT city
 FROM student
-WHERE grade = "A"
+WHERE grade = "O"
 GROUP BY city
 HAVING MAX(marks) >= 93
 ORDER BY city DESC;

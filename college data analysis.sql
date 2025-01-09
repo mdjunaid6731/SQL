@@ -151,5 +151,90 @@ GROUP BY city
 HAVING MAX(marks) >= 93
 ORDER BY city DESC;
 
+-- Revisting Foreign key
+create table dept (
+	id int primary key,
+    name varchar(50)
+);
+
+create table teacher(
+	id int primary key,
+    name varchar(50),
+    dept_id int,
+    foreign key(dept_id) references dept(id)
+);
+
+-- On Update Cascade
+-- When we create a foreign key using this option, it deletes the referencing rows in the 
+-- child table when the referenced row is deleted in the parent table which has a primary key.
+
+-- On Delete Cascade
+-- When we create a foreign key using UPDATE CASCADE the referencing rows are updated in the 
+-- child table when the referenced row is updated in the parent table which has a primary key.
+
+drop table teacher;
+
+create table teacher(
+	id int primary key,
+    name varchar(50),
+    dept_id int,
+    foreign key(dept_id) references dept(id)
+    on update cascade
+    on delete cascade
+);
+
+insert into dept
+values 
+(101, "English"),
+(102, "IT");
+
+Insert into teacher
+values
+(101, "Adam", 101),
+(102, "Eve", 102);
+
+select * from dept;
+
+update dept 
+set id = 103
+where id = 102;
+
+select * from teacher; -- Changed in both the tables
+
+
+-- Table Related Query
+-- ADD COLUMN
+Alter table student 
+add column age int not null default 19;
+
+select * from student;
+
+-- Modify COLUMN
+Alter table student 
+modify column age varchar(2);
+
+-- Change column
+alter table student
+change age stu_age int;
+
+-- DROP COLUMN
+ALter table student 
+Drop column stu_age;
+
+-- Rename table
+Alter table student
+Rename to student_table;
+
+Alter table student_table
+Rename to student;
+ 
+-- truncate
+-- Drop deletes the table 
+-- Truncate deletes only tables data not table
+ 
+ truncate table student;
+
+
+
 
 
